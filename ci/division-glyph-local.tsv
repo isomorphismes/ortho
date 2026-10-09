@@ -1,0 +1,13 @@
+kind	path_or_target	sha256_or_value
+compiler	ick_revision	c61e448251744a2f40ad743ebef1a027bdcd2f9d
+shared	ai_ci_revision	903b2cb27ea572c9c6cb2ffa9f39e0fbf06ec9f8
+ndk	revision	29.0.14206865
+api	minimum	26
+source	app/src/main/cpp/orthant_model.h	bd93737b4f102a77f34a90f94105fe4fb9c2737a2a99b260121a201d78e0ae53
+source	app/src/main/cpp/ortho.c	270fdf3df427e7651e38b1aa4013f302b16226aa1095350c8477b60454834c33
+library	build/ick-local-arm64-v8a/libortho.so	d82fac96a72850f485d33e022207b5efaea8840d024d13e370072d9205dd766b
+library	build/ick-local-x86_64/libortho.so	d9c5fdec01dcdacec8f0ce805353aba307742de78d3406a901fb9f8ee111f099
+library	build/ick-local-arm/libortho.so	8c6ef60345626bed5ee62f4172cf5a46e5c0731840f4f922a45fdc46225c944f
+validation	local_native_compile_assembly_link	PASS
+validation	hosted_exact_head_APK	PENDING
+validation	physical_device_acceptance	NOT_RUN

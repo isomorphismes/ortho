@@ -38,3 +38,12 @@ Pinch, dimension changes, and sign changes are intentionally not in this first s
 ## Reference
 
 Kenneth O. May, “The Impossibility of a Division Algebra of Vectors in Three Dimensional Space,” *American Mathematical Monthly* 73(3), 1966, 289–291. See `references/may-1966.md`.
+
+The maintained C arithmetic uses `÷` and is compiled directly by pinned ICK.
+The Android and unsigned-release workflows qualify the compiler for each
+maintained ABI, restore the stages under `build/ick/<abi>`, and check out the
+pinned shared source producer under `.ai-ci-ick`. Local Gradle builds require
+these same stages and checkout; no source rewrite or stock-C fallback is used.
+NDK r29 still assembles ICK output, compiles unchanged NativeActivity glue, and
+links the application. Existing Fortify2, stack protection and API26 are retained.
+Native-library proofs do not replace the existing APK, emulator or device checks.
