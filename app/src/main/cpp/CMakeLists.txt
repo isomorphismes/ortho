@@ -8,7 +8,19 @@ add_library(native_app_glue STATIC
 )
 target_include_directories(native_app_glue PUBLIC "${NATIVE_GLUE_DIR}")
 
-add_library(ortho SHARED ortho.c)
+get_filename_component(APPLICATION_ROOT "${CMAKE_CURRENT_LIST_DIR}/../../../.." ABSOLUTE)
+set(AICI_ICK_ROOT "${APPLICATION_ROOT}/.ai-ci-ick" CACHE PATH "Pinned ai-ci checkout")
+set(ICK_STAGE_ROOT "${APPLICATION_ROOT}/build/ick" CACHE PATH "Qualified ICK ABI stages")
+include("${AICI_ICK_ROOT}/ick-android/OwnedC.cmake")
+if(NOT ICK_COMPILER)
+  ick_android_stage(ROOT "${ICK_STAGE_ROOT}/${ANDROID_ABI}" FORTIFY_SOURCE 2)
+endif()
+ick_android_objects(owned_objects NAME ortho SOURCES ortho.c
+  INCLUDES "${NATIVE_GLUE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}"
+  OPTIONS -Wall -Wextra -Wpedantic STANDARD 11)
+
+add_library(ortho SHARED ${owned_objects})
+set_target_properties(ortho PROPERTIES LINKER_LANGUAGE C)
 target_compile_features(ortho PRIVATE c_std_11)
 target_compile_options(ortho PRIVATE -Wall -Wextra -Wpedantic)
 target_include_directories(ortho PRIVATE "${CMAKE_CURRENT_SOURCE_DIR}")

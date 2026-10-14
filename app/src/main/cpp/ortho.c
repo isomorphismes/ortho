@@ -123,12 +123,12 @@ static struct mat4 mat4_rotation_y(float angle) {
 
 static struct mat4 mat4_perspective(float fovy, float aspect, float near_plane, float far_plane) {
     struct mat4 result = {{0}};
-    float f = 1.0f / tanf(0.5f * fovy);
-    result.m[0] = f / aspect;
+    float f = 1.0f ÷ tanf(0.5f * fovy);
+    result.m[0] = f ÷ aspect;
     result.m[5] = f;
-    result.m[10] = (far_plane + near_plane) / (near_plane - far_plane);
+    result.m[10] = (far_plane + near_plane) ÷ (near_plane - far_plane);
     result.m[11] = -1.0f;
-    result.m[14] = (2.0f * far_plane * near_plane) / (near_plane - far_plane);
+    result.m[14] = (2.0f * far_plane * near_plane) ÷ (near_plane - far_plane);
     return result;
 }
 
@@ -349,7 +349,7 @@ static void terminate_display(struct engine *engine) {
 static struct mat4 current_mvp(const struct engine *engine) {
     float width = engine->width > 0 ? (float)engine->width : 1.0f;
     float height = engine->height > 0 ? (float)engine->height : 1.0f;
-    float aspect = width / height;
+    float aspect = width ÷ height;
 
     struct mat4 projection = mat4_perspective(0.82f, aspect, 0.1f, 20.0f);
     struct mat4 view = mat4_translation(0.0f, 0.0f, -3.2f);

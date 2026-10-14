@@ -9,3 +9,10 @@ The Android project can produce the unsigned release APK F-Droid expects entirel
 5. Replace `FULL_COMMIT_HASH` in the metadata template with that tagged commit and submit it as `metadata/org.isomorphisms.ortho.yml` to fdroiddata.
 
 F-Droid rebuilds and signs the application itself. The upstream unsigned APK is only a reproducibility gate.
+
+The template builds pinned ICK source stages for each maintained ABI and uses
+pinned ai-ci source-production rules before Gradle. Its `srclibs/ICK.yml` and
+`srclibs/AICI.yml` definitions belong alongside the submission metadata. The
+owned C files compile directly with ICK; upstream NDK glue, assembly and linking
+retain their existing platform tools. Fortify2 and the API26 floor remain active.
+This is submission/build configuration, not a claim of F-Droid publication.
