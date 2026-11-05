@@ -7,7 +7,7 @@
         android:hasCode="false"
         android:label="Ortho"
         android:supportsRtl="true"
-        android:theme="@android:style/Theme.Material.NoActionBar.Fullscreen">
+        android:theme="@style/Theme.Charcoal.App">
         <activity
             android:name="android.app.NativeActivity"
             android:configChanges="orientation|screenSize|keyboardHidden|density"
