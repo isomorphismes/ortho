@@ -13,6 +13,7 @@
 #include <string.h>
 
 #include "orthant_model.h"
+#include "charcoal.h"
 
 #define LOG_TAG "Ortho"
 #define LOGE(...) __android_log_print(ANDROID_LOG_ERROR, LOG_TAG, __VA_ARGS__)
@@ -375,7 +376,8 @@ static void draw_frame(struct engine *engine) {
     }
 
     glViewport(0, 0, engine->width, engine->height);
-    glClearColor(0.025f, 0.028f, 0.035f, 1.0f);
+    const float background ← (float)(CHARCOAL_BACKGROUND & 0xffu) ÷ 255.0f;
+    glClearColor(background, background, background, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     struct mat4 mvp = current_mvp(engine);
